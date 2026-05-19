@@ -1,12 +1,14 @@
 <h2>Cadastro de Usuários</h2>
 
-<div *ngIf="successMessage">
-  {{ successMessage }}
-</div>
-
 <form [formGroup]="form" (ngSubmit)="submit()">
 
-  <input placeholder="Nome" formControlName="name">
+  <mat-form-field appearance="outline">
+
+    <mat-label>Nome</mat-label>
+
+    <input matInput formControlName="name">
+
+  </mat-form-field>
 
   <div *ngIf="form.get('name')?.touched && form.get('name')?.invalid">
 
@@ -20,7 +22,13 @@
 
 </div>
 
-  <input placeholder="Email" formControlName="email">
+  <mat-form-field appearance="outline">
+
+    <mat-label>Email</mat-label>
+
+    <input matInput formControlName="email">
+
+  </mat-form-field>
 
   <div *ngIf="form.get('email')?.touched && form.get('email')?.invalid">
 
@@ -34,7 +42,13 @@
 
 </div>
 
-  <input type="number" placeholder="Idade" formControlName="age">
+  <mat-form-field appearance="outline">
+
+    <mat-label>Idade</mat-label>
+
+    <input matInput type="number" formControlName="age">
+
+  </mat-form-field>
 
   <div *ngIf="form.get('age')?.touched && form.get('age')?.invalid">
 
@@ -52,7 +66,7 @@
 
 </div>
 
-  <button type="submit">
+  <button mat-raised-button color="primary" type="submit">
 
     {{ editingUserId ? 'Atualizar' : 'Cadastrar' }}
 

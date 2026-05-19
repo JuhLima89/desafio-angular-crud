@@ -2,18 +2,21 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators, FormsModule} from '@angular/forms';
 import { UserService, User } from '../services/user';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-users',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, FormsModule],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule, MatInputModule, MatButtonModule, MatFormFieldModule, MatSnackBarModule],
   templateUrl: './users.html',
   styleUrls: ['./users.css'],
 })
 export class Users implements OnInit {
 
   users: User[] = [];
-  successMessage = '';
   editingUserId: string | null = null;
   searchTerm = '';
   form: any;
@@ -21,7 +24,8 @@ export class Users implements OnInit {
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
@@ -80,7 +84,13 @@ export class Users implements OnInit {
   this.userService.updateUser(this.editingUserId, user)
     .subscribe(() => {
 
-      this.successMessage = 'Usuário atualizado com sucesso!';
+  this.snackBar.open(
+    'Usuário atualizado com sucesso!',
+    'Fechar',
+    {
+      duration: 3000
+    }
+ );
 
       this.form.reset();
 
@@ -89,7 +99,7 @@ export class Users implements OnInit {
       this.loadUsers();
 
       setTimeout(() => {
-        this.successMessage = '';
+     
       }, 3000);
 
     });
@@ -99,14 +109,20 @@ export class Users implements OnInit {
   this.userService.createUser(user)
     .subscribe(() => {
 
-      this.successMessage = 'Usuário cadastrado com sucesso!';
+  this.snackBar.open(
+    'Usuário cadastrado com sucesso!',
+    'Fechar',
+    {
+      duration: 3000
+    }
+ );
 
       this.form.reset();
 
       this.loadUsers();
 
       setTimeout(() => {
-        this.successMessage = '';
+        
       }, 3000);
 
     });
@@ -121,9 +137,18 @@ export class Users implements OnInit {
 
     this.userService.deleteUser(id).subscribe(() => {
       this.loadUsers();
+         
+      this.snackBar.open(
+        'Usuário removido com sucesso!',
+        'Fechar',
+        {
+          duration: 3000
+        }
+      );
+
     });
- 
- }
+
+  }
 
   editUser(user: User) {
 
