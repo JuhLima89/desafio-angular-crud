@@ -1,30 +1,72 @@
 <h2>Cadastro de Usuários</h2>
 
+<div *ngIf="successMessage">
+  {{ successMessage }}
+</div>
+
 <form [formGroup]="form" (ngSubmit)="submit()">
 
   <input placeholder="Nome" formControlName="name">
 
   <div *ngIf="form.get('name')?.touched && form.get('name')?.invalid">
-    Nome inválido
-  </div>
+
+  <small *ngIf="form.get('name')?.errors?.['required']">
+    Nome é obrigatório
+  </small>
+
+  <small *ngIf="form.get('name')?.errors?.['minlength']">
+    Nome deve ter no mínimo 3 caracteres
+  </small>
+
+</div>
 
   <input placeholder="Email" formControlName="email">
 
   <div *ngIf="form.get('email')?.touched && form.get('email')?.invalid">
-    Email inválido
-  </div>
+
+  <small *ngIf="form.get('email')?.errors?.['required']">
+    Email é obrigatório
+  </small>
+
+  <small *ngIf="form.get('email')?.errors?.['email']">
+    Digite um email válido
+  </small>
+
+</div>
 
   <input type="number" placeholder="Idade" formControlName="age">
 
   <div *ngIf="form.get('age')?.touched && form.get('age')?.invalid">
-    Idade deve ser entre 18 e 99
-  </div>
 
-  <button type="submit">Cadastrar</button>
+  <small *ngIf="form.get('age')?.errors?.['required']">
+    Idade é obrigatória
+  </small>
+
+  <small *ngIf="form.get('age')?.errors?.['min']">
+    Idade mínima é 1
+  </small>
+
+  <small *ngIf="form.get('age')?.errors?.['max']">
+    Idade máxima é 99
+  </small>
+
+</div>
+
+  <button type="submit">
+
+    {{ editingUserId ? 'Atualizar' : 'Cadastrar' }}
+
+  </button>
 
 </form>
 
 <hr>
+
+<input
+  type="text"
+  placeholder="Pesquisar usuário"
+  [(ngModel)]="searchTerm"
+/>
 
 <h2>Usuários cadastrados</h2>
 
@@ -37,7 +79,7 @@
     <th>Ações</th>
   </tr>
 
-  @for (user of users; track user.id) {
+  @for (user of filteredUsers(); track user.id)  {
 
     <tr>
 
@@ -46,9 +88,15 @@
       <td>{{ user.age }}</td>
 
       <td>
+
+        <button (click)="editUser(user)">
+          Editar
+        </button>
+
         <button *ngIf="user.id" (click)="deleteUser(user.id)">
           Excluir
         </button>
+
       </td>
 
     </tr>

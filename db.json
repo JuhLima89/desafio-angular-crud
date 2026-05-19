@@ -5,6 +5,24 @@
       "email": "jlima998@gmail.com",
       "age": 36,
       "id": "dPMRPDayQi0"
+    },
+    {
+      "name": "Sophia",
+      "email": "soso@gmail.com",
+      "age": 14,
+      "id": "nw5nHAjXhSs"
+    },
+    {
+      "name": "Olaf Olavo",
+      "email": "lalafinho@gmail.com",
+      "age": 1,
+      "id": "YVM7xt8STvw"
+    },
+    {
+      "name": "Sheila",
+      "email": "sheila@gmail.com",
+      "age": 47,
+      "id": "Ky4vvFLnIyU"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
