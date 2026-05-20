@@ -92,6 +92,10 @@ O projeto utiliza Angular Material para:
 - Ações de editar e excluir
 - Pesquisa dinâmica
 
+
+![Tela](screenshots/cadastro_tela.png)
+
+
 ---
 
 # 📂 Estrutura do projeto
@@ -152,8 +156,6 @@ Servidor backend:
 http://localhost:3000/users
 ```
 
-![Tela](screenshots/json_tela.png)
-
 ---
 
 ## 5️⃣ Rodar aplicação Angular
@@ -171,7 +173,20 @@ Aplicação disponível em:
 http://localhost:4200
 ```
 
-![Tela](screenshots/cadastro_tela.png)
+## 📄 Exemplo de dados mockados
+
+```json
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "Juliana",
+      "email": "julima@email.com",
+      "age": 36
+    }
+  ]
+}
+```
 
 ---
 
