@@ -116,7 +116,7 @@ src/
 ## 1️⃣ Clonar repositório
 
 ```bash
-git clone SEU_LINK_DO_GITHUB
+git clone https://github.com/JuhLima89/desafio-angular-crud.git
 ```
 
 ---
