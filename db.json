@@ -17,12 +17,6 @@
       "email": "lalafinho@gmail.com",
       "age": 1,
       "id": "YVM7xt8STvw"
-    },
-    {
-      "name": "Sheila",
-      "email": "sheila@gmail.com",
-      "age": 47,
-      "id": "Ky4vvFLnIyU"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

@@ -1,59 +1,198 @@
-# UserCrud
+# CRUD de Usuários com Angular + Angular Material
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.11.
+## 📌 Sobre o projeto
 
-## Development server
+Este projeto foi desenvolvido com o objetivo de praticar conceitos fundamentais de desenvolvimento frontend utilizando Angular.
 
-To start a local development server, run:
+A aplicação consiste em um sistema de cadastro de usuários com funcionalidades completas de CRUD:
+
+- Criar usuários
+- Listar usuários
+- Editar usuários
+- Excluir usuários
+- Pesquisar usuários em tempo real
+
+Além das funcionalidades, o projeto também recebeu melhorias visuais utilizando Angular Material para criar uma interface mais moderna e amigável.
+
+---
+
+# 🚀 Tecnologias utilizadas
+
+- Angular
+- TypeScript
+- Angular Material
+- RxJS
+- JSON Server
+- HTML
+- CSS
+
+---
+
+# 🎯 Funcionalidades
+
+## ✅ Cadastro de usuários
+Permite cadastrar usuários com:
+- Nome
+- Email
+- Idade
+
+---
+
+## ✅ Validação de formulário
+Validações implementadas:
+
+- Nome obrigatório
+- Nome com mínimo de 3 caracteres
+- Email válido
+- Idade mínima e máxima
+
+Mensagens de erro são exibidas em tempo real.
+
+---
+
+## ✅ Atualização de usuários
+Permite editar usuários já cadastrados.
+
+O formulário é preenchido automaticamente ao clicar em editar.
+
+---
+
+## ✅ Exclusão de usuários
+Permite remover usuários da lista.
+
+---
+
+## ✅ Busca em tempo real
+Filtro de pesquisa por:
+- Nome
+- Email
+
+---
+
+## ✅ Interface moderna
+O projeto utiliza Angular Material para:
+
+- Inputs estilizados
+- Botões personalizados
+- Ícones
+- Snackbar de sucesso
+- Layout moderno
+
+---
+
+# 🖥️ Preview da aplicação
+
+## Tela de cadastro
+- Formulário moderno
+- Campos validados
+- Feedback visual
+
+## Lista de usuários
+- Tabela estilizada
+- Ações de editar e excluir
+- Pesquisa dinâmica
+
+---
+
+# 📂 Estrutura do projeto
+
+```bash
+src/
+ ├── app/
+ │   ├── services/
+ │   │   └── user.ts
+ │   ├── users/
+ │   │   ├── users.ts
+ │   │   ├── users.html
+ │   │   └── users.css
+ │   ├── app.ts
+ │   └── app.html
+```
+
+---
+
+# ⚙️ Como executar o projeto
+
+## 1️⃣ Clonar repositório
+
+```bash
+git clone SEU_LINK_DO_GITHUB
+```
+
+---
+
+## 2️⃣ Entrar na pasta
+
+```bash
+cd user-crud
+```
+
+---
+
+## 3️⃣ Instalar dependências
+
+```bash
+npm install
+```
+
+---
+
+## 4️⃣ Rodar o JSON Server
+
+```bash
+npx json-server --watch db.json
+```
+
+![Tela](screenshots/json_server.png)
+
+
+Servidor backend:
+
+```bash
+http://localhost:3000/users
+```
+
+![Tela](screenshots/json_tela.png)
+
+---
+
+## 5️⃣ Rodar aplicação Angular
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+![Tela](screenshots/ng_server.png)
 
-## Code scaffolding
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Aplicação disponível em:
 
 ```bash
-ng generate --help
+http://localhost:4200
 ```
 
-## Building
+![Tela](screenshots/cadastro_tela.png)
 
-To build the project run:
+---
 
-```bash
-ng build
-```
+# 📚 Aprendizados
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Durante o desenvolvimento deste projeto foram praticados:
 
-## Running unit tests
+- Componentes standalone
+- Reactive Forms
+- Consumo de API
+- Observables
+- Services
+- CRUD completo
+- Angular Material
+- Estruturação de projeto Angular
+- Estilização e UX
+- Debug de erros Angular/TypeScript
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+---
 
-```bash
-ng test
-```
+# 👩‍💻 Desenvolvido por
 
-## Running end-to-end tests
+Juliana Lima
 
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
