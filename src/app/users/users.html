@@ -1,120 +1,122 @@
-<h2>Cadastro de Usuários</h2>
+<div class="container">
 
-<form [formGroup]="form" (ngSubmit)="submit()">
+  <h2>Cadastro de Usuários</h2>
 
-  <mat-form-field appearance="outline">
+  <div class="form-card">
 
-    <mat-label>Nome</mat-label>
+    <form [formGroup]="form" (ngSubmit)="submit()">
 
-    <input matInput formControlName="name">
+      <mat-form-field appearance="outline">
+        <mat-label>Nome</mat-label>
+        <input matInput formControlName="name">
+      </mat-form-field>
 
-  </mat-form-field>
+      <div *ngIf="form.get('name')?.touched && form.get('name')?.invalid">
+        <small *ngIf="form.get('name')?.errors?.['required']">
+          Nome é obrigatório
+        </small>
+        <small *ngIf="form.get('name')?.errors?.['minlength']">
+          Nome deve ter no mínimo 3 caracteres
+        </small>
+      </div>
 
-  <div *ngIf="form.get('name')?.touched && form.get('name')?.invalid">
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email">
+      </mat-form-field>
 
-  <small *ngIf="form.get('name')?.errors?.['required']">
-    Nome é obrigatório
-  </small>
+      <div *ngIf="form.get('email')?.touched && form.get('email')?.invalid">
+        <small *ngIf="form.get('email')?.errors?.['required']">
+          Email é obrigatório
+        </small>
+        <small *ngIf="form.get('email')?.errors?.['email']">
+          Digite um email válido
+        </small>
+      </div>
 
-  <small *ngIf="form.get('name')?.errors?.['minlength']">
-    Nome deve ter no mínimo 3 caracteres
-  </small>
+      <mat-form-field appearance="outline">
+        <mat-label>Idade</mat-label>
+        <input matInput type="number" formControlName="age">
+      </mat-form-field>
+
+      <div *ngIf="form.get('age')?.touched && form.get('age')?.invalid">
+        <small *ngIf="form.get('age')?.errors?.['required']">
+          Idade é obrigatória
+        </small>
+        <small *ngIf="form.get('age')?.errors?.['min']">
+          Idade mínima é 1
+        </small>
+        <small *ngIf="form.get('age')?.errors?.['max']">
+          Idade máxima é 99
+        </small>
+      </div>
+
+      <button
+        mat-raised-button
+        class="btn-save"
+        type="submit"
+      >
+        <mat-icon>
+          {{ editingUserId ? 'edit' : 'person_add' }}
+        </mat-icon>
+
+        {{ editingUserId ? 'Atualizar' : 'Cadastrar' }}
+      </button>
+
+    </form>
+
+  </div>
+
+  <div class="list-card">
+
+    <mat-form-field appearance="outline" class="search-field">
+      <mat-label>Pesquisar usuário</mat-label>
+      <input matInput [(ngModel)]="searchTerm">
+    </mat-form-field>
+
+    <h2>Usuários cadastrados</h2>
+
+    <table>
+      <tr>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Idade</th>
+        <th>Ações</th>
+      </tr>
+
+      @for (user of filteredUsers(); track user.id) {
+
+        <tr>
+          <td>{{ user.name }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.age }}</td>
+
+          <td>
+            <button
+              mat-raised-button
+              class="btn-edit"
+              (click)="editUser(user)"
+            >
+              <mat-icon>edit</mat-icon>
+              Editar
+            </button>
+
+            <button
+              mat-raised-button
+              class="btn-delete"
+              *ngIf="user.id"
+              (click)="deleteUser(user.id)"
+            >
+              <mat-icon>delete</mat-icon>
+              Excluir
+            </button>
+          </td>
+        </tr>
+
+      }
+
+    </table>
+
+  </div>
 
 </div>
-
-  <mat-form-field appearance="outline">
-
-    <mat-label>Email</mat-label>
-
-    <input matInput formControlName="email">
-
-  </mat-form-field>
-
-  <div *ngIf="form.get('email')?.touched && form.get('email')?.invalid">
-
-  <small *ngIf="form.get('email')?.errors?.['required']">
-    Email é obrigatório
-  </small>
-
-  <small *ngIf="form.get('email')?.errors?.['email']">
-    Digite um email válido
-  </small>
-
-</div>
-
-  <mat-form-field appearance="outline">
-
-    <mat-label>Idade</mat-label>
-
-    <input matInput type="number" formControlName="age">
-
-  </mat-form-field>
-
-  <div *ngIf="form.get('age')?.touched && form.get('age')?.invalid">
-
-  <small *ngIf="form.get('age')?.errors?.['required']">
-    Idade é obrigatória
-  </small>
-
-  <small *ngIf="form.get('age')?.errors?.['min']">
-    Idade mínima é 1
-  </small>
-
-  <small *ngIf="form.get('age')?.errors?.['max']">
-    Idade máxima é 99
-  </small>
-
-</div>
-
-  <button mat-raised-button color="primary" type="submit">
-
-    {{ editingUserId ? 'Atualizar' : 'Cadastrar' }}
-
-  </button>
-
-</form>
-
-<hr>
-
-<input
-  type="text"
-  placeholder="Pesquisar usuário"
-  [(ngModel)]="searchTerm"
-/>
-
-<h2>Usuários cadastrados</h2>
-
-<table border="1" width="100%">
-
-  <tr>
-    <th>Nome</th>
-    <th>Email</th>
-    <th>Idade</th>
-    <th>Ações</th>
-  </tr>
-
-  @for (user of filteredUsers(); track user.id)  {
-
-    <tr>
-
-      <td>{{ user.name }}</td>
-      <td>{{ user.email }}</td>
-      <td>{{ user.age }}</td>
-
-      <td>
-
-        <button (click)="editUser(user)">
-          Editar
-        </button>
-
-        <button *ngIf="user.id" (click)="deleteUser(user.id)">
-          Excluir
-        </button>
-
-      </td>
-
-    </tr>
-
-  }
-
-</table>
